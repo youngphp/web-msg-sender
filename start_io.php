@@ -74,9 +74,9 @@ $sender_io->on('workerStart', function(){
                 }else{
                     $sender_io->emit('new_msg', @$_POST['content']);
                 }
-                // http接口返回，如果客户断开socket返回fail
+                // http接口返回，如果客户断开socket返回offline
                 if(empty($uidConnectionMap[$to])){
-                    return $http_connection->send('error');
+                    return $http_connection->send('offline');
                 }else{
                     return $http_connection->send('ok');
                 }
